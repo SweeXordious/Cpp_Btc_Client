@@ -1,7 +1,7 @@
 #include <iostream>
 #define CATCH_CONFIG_RUNNER
 
-#include "libs/catch2/catch.hpp"
+#include "include/includes.h"
 
 int runCatchTests()
 {
