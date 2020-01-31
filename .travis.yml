@@ -1,0 +1,27 @@
+dist: trusty
+sudo: require
+language: cpp
+compiler: gcc
+
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - gcc-5
+      - g++-5
+      - cmake
+      - libgmp3-dev
+
+script:
+  - sudo ln -s /usr/bin/gcc-5 /usr/local/bin/gcc
+  - sudo ln -s /usr/bin/g++-5 /usr/local/bin/g++
+  - gcc -v && g++ -v && cmake --version
+  - export CC=/usr/bin/gcc-6
+  - export CXX=/usr/bin/g++-6
+  - cd ${TRAVIS_BUILD_DIR}
+  - mkdir build
+  - cd build
+  - cmake ..
+  - make
+  - ./psychic-garbanzo test
