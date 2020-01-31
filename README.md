@@ -1,5 +1,5 @@
 # psychic-garbanzo
-
+[![Build Status](https://travis-ci.com/SweeXordious/psychic-garbanzo.svg?token=z2HQYuqNJFYxRTjxCmyT&branch=master)](https://travis-ci.com/SweeXordious/psychic-garbanzo)
 # Commands
 
 `sudo apt-get install libgmp3-dev`
