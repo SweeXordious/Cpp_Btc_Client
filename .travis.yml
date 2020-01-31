@@ -11,13 +11,13 @@ addons:
       - g++-5
       - libgmp3-dev
       - cmake
-      -
+
 script:
   - sudo ln -s /usr/bin/gcc-5 /usr/local/bin/gcc
   - sudo ln -s /usr/bin/g++-5 /usr/local/bin/g++
   - gcc -v && g++ -v && cmake --version
-  - export CC=/usr/bin/gcc-6
-  - export CXX=/usr/bin/g++-6
+  - export CC=/usr/bin/gcc-5
+  - export CXX=/usr/bin/g++-5
   - cd ${TRAVIS_BUILD_DIR}
   - mkdir build
   - cd build
