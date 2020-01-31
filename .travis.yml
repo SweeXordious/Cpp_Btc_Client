@@ -1,5 +1,4 @@
 dist: trusty
-sudo: require
 language: cpp
 compiler: gcc
 
@@ -11,20 +10,8 @@ addons:
       - gcc-5
       - g++-5
       - libgmp3-dev
-
-install:
-  - version=3.16
-  - build=3
-  - mkdir ~/temp
-  - cd ~/temp
-  - wget https://cmake.org/files/v$version/cmake-$version.$build.tar.gz
-  - tar -xzvf cmake-$version.$build.tar.gz
-  - cd cmake-$version.$build/
-  - ./bootstrap
-  - make -j4
-  - sudo make install
-  - cmake --version
-
+      - cmake
+      -
 script:
   - sudo ln -s /usr/bin/gcc-5 /usr/local/bin/gcc
   - sudo ln -s /usr/bin/g++-5 /usr/local/bin/g++
