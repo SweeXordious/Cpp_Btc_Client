@@ -9,17 +9,20 @@
 
 class MerkleTree {
 private:
-    std::vector<mpz_t > txs_hash;
-    mpz_t root;
+    std::vector<std::string > txs_hash;
+    std::string root;
     int size;
 
 public:
-    virtual ~MerkleTree();
-
-public:
     MerkleTree();
-    void addElement(const mpz_t tx_hash);
+    void addElement(const std::string& tx_hash);
+    std::string calculateRoot();
 
+    const std::vector<std::string> &getTxsHash() const;
+
+    const std::string &getRoot() const;
+
+    int getSize() const;
 
 };
 

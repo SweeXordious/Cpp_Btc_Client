@@ -17,6 +17,8 @@
 // personal headers includes
 #include "src/functions.h"
 #include "src/playground/playground.h"
-
+#include "src/merkleTree/MerkleTree.h"
+#include "src/block/BlockHeader.h"
+#include "src/transaction/Transaction.h"
 
 #endif //PSYCHIC_GARBANZO_INCLUDES_H

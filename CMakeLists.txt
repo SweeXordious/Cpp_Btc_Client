@@ -35,7 +35,7 @@ if (BUILD_TESTS)
                 libs/sha256/SHA256.cpp libs/sha256/SHA256.h
                 src/merkleTree/MerkleTree.cpp src/merkleTree/MerkleTree.h
                 src/block/BlockHeader.cpp src/block/BlockHeader.h
-                src/transaction/Transaction.cpp src/transaction/Transaction.h)
+                src/transaction/Transaction.cpp src/transaction/Transaction.h test/MerkleTreeTest.cpp)
         target_link_libraries(psychic-test gmp gmpxx)
         if (CMAKE_BUILD_TYPE STREQUAL "Coverage")
                 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/libs/codeCoverage")
