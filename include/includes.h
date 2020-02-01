@@ -15,8 +15,10 @@
 #include "libs/sha256/SHA256.h"
 
 // personal headers includes
-#include "include/functions.h"
+#include "src/functions.h"
 #include "src/playground/playground.h"
-
+#include "src/merkleTree/MerkleTree.h"
+#include "src/block/BlockHeader.h"
+#include "src/transaction/Transaction.h"
 
 #endif //PSYCHIC_GARBANZO_INCLUDES_H

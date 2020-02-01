@@ -60,7 +60,7 @@ protected:
 };
 
 std::string sha256String(std::string input);
-void sha256Mpz(std::string input, mpz_t &output);
+mpz_class sha256Mpz(std::string input);
 
 
 #endif //PSYCHIC_GARBANZO_SHA256_H

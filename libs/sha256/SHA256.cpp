@@ -137,10 +137,12 @@ std::string sha256String(std::string input)
 }
 
 
-void sha256Mpz(std::string input, mpz_t &output){
-    mpz_init(output);
+mpz_class sha256Mpz(std::string input){
     std::string hash = sha256String(input);
-    if (mpz_set_str(output, hash.c_str(), 16) != 0){
+    mpz_class mpz_hash = mpz_class();
+
+    if (mpz_hash.set_str(hash, 16) != 0){
         throw "Sha256 hash to Mpz conversion failed!";
     }
+    return mpz_hash;
 }
