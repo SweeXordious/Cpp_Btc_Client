@@ -14,7 +14,7 @@ addons:
       - python3-pip
 
 before_install:
-  - pip3 install codecov
+  - sudo pip3 install codecov
 
 script:
   - sudo ln -s /usr/bin/gcc-5 /usr/local/bin/gcc
