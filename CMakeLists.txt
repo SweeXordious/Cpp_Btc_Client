@@ -9,14 +9,42 @@ set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/libs/gmp")
 find_package(GMP REQUIRED)
 
 
-add_executable(psychic-garbanzo main.cpp
+add_executable(psychic-garbanzo src/main.cpp
         src/functions.cpp
-        test/functionsTest.cpp test/Sha256Test.cpp
         include/functions.h include/includes.h include/typedefs.h
         src/playground/playground.h src/playground/playground.cpp
         libs/sha256/SHA256.cpp libs/sha256/SHA256.h )
 
 target_link_libraries(psychic-garbanzo gmp gmpxx)
+
+
+
+################################
+# Testing
+################################
+
+# Options. Turn on with 'cmake -DBUILD_TESTS=ON'.
+option(BUILD_TESTS "Build all tests." OFF) # Makes boolean 'test' available.
+
+if (BUILD_TESTS)
+        enable_testing()
+        add_executable(psychic-test test/functionsTest.cpp test/Sha256Test.cpp
+                src/functions.cpp
+                include/functions.h include/includes.h include/typedefs.h
+                src/playground/playground.h src/playground/playground.cpp
+                libs/sha256/SHA256.cpp libs/sha256/SHA256.h
+                )
+        target_link_libraries(psychic-test gmp gmpxx)
+        if (CMAKE_BUILD_TYPE STREQUAL "Coverage")
+                set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/libs/codeCoverage")
+                include(CodeCoverage)
+                setup_target_for_coverage(${PROJECT_NAME}_coverage psychic-test coverage)
+
+                SET(CMAKE_CXX_FLAGS "-g -O0 -fprofile-arcs -ftest-coverage")
+                SET(CMAKE_C_FLAGS "-g -O0 -fprofile-arcs -ftest-coverage")
+        endif() #CMAKE_BUILD_TYPE STREQUAL "Coverage"
+
+endif()
 
 
 
