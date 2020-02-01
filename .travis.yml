@@ -11,6 +11,11 @@ addons:
       - g++-5
       - libgmp3-dev
       - cmake
+      - python3-pip
+      - lcov
+
+before_install:
+  - sudo pip3 install codecov
 
 script:
   - sudo ln -s /usr/bin/gcc-5 /usr/local/bin/gcc
@@ -21,13 +26,10 @@ script:
   - cd ${TRAVIS_BUILD_DIR}
   - mkdir build
   - cd build
-  - cmake ..
+  - cmake -DCMAKE_BUILD_TYPE=Coverage -DBUILD_TESTS=ON ..
   - make
-  - ./psychic-garbanzo test
+  - make psychic-garbanzo_coverage
+  - ctest
 
 after_success:
   -  bash <(curl -s https://codecov.io/bash)
-
-env:
-  - global:
-      - CODECOV_TOKEN="0a28721f-a7b6-456d-b158-92d54826fbff"
