@@ -5,6 +5,7 @@
 #include <iostream>
 #include <string>
 
+
 TEST_CASE("MerkleTree tests: Adding function"){
 
     MerkleTree m = MerkleTree();
@@ -15,6 +16,15 @@ TEST_CASE("MerkleTree tests: Adding function"){
     CHECK(m.getSize() == 1);
     CHECK(m.getTxsHash()[0] == tx1);
 }
+
+TEST_CASE("MerkleTree tests: Adding function with an empty hash"){
+
+    MerkleTree m = MerkleTree();
+
+    CHECK_THROWS(m.addElement(""));
+    CHECK(m.getSize() == 0);
+}
+
 
 TEST_CASE("MerkleTree tests: Checking the root calculation with an even number of transactions"){
 
