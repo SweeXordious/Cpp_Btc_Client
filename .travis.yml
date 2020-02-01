@@ -12,6 +12,7 @@ addons:
       - libgmp3-dev
       - cmake
       - python3-pip
+      - lcov
 
 before_install:
   - sudo pip3 install codecov
