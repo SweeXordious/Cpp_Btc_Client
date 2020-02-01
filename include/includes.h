@@ -15,7 +15,7 @@
 #include "libs/sha256/SHA256.h"
 
 // personal headers includes
-#include "include/functions.h"
+#include "src/functions.h"
 #include "src/playground/playground.h"
 
 
