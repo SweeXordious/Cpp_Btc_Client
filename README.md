@@ -4,6 +4,32 @@
 
 `sudo apt-get install libgmp3-dev`
 
+### Build 
+`git clone https://github.com/SweeXordious/psychic-garbanzo`
+
+`mkdir build`
+
+`cd build`
+
+`cmake ..`
+
+`make`
+
+`./psychic-garbanzo`
+
+#### Build tests
+`git clone https://github.com/SweeXordious/psychic-garbanzo`
+
+`mkdir build`
+
+`cd build`
+
+`cmake  -DCMAKE_BUILD_TYPE=Coverage -DBUILD_TESTS=ON ..`
+
+`make psychic-test`
+
+`./psychic-test`
+
 # Progress
 
 Components:
