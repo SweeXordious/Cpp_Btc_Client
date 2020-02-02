@@ -48,7 +48,7 @@ Components:
 - Transaction definition
     - addresses
     - currency
-- Merkle tree: Next
+- Merkle tree: Done
 - Proof of work
 - Storage
     - serialization
