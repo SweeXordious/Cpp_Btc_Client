@@ -146,3 +146,9 @@ mpz_class sha256Mpz(std::string input){
     }
     return mpz_hash;
 }
+
+std::array<char, HASH_ARRAY_SIZE> sha256Array(std::string input) {
+    std::string hash = sha256String(input);
+    std::array<char, HASH_ARRAY_SIZE> buf = stringToArray(hash);
+    return buf;
+}
