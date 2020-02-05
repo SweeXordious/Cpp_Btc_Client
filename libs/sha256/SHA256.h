@@ -35,7 +35,9 @@
 
 #include <string>
 #include <include/typedefs.h>
-#include <include/includes.h>
+#include <include/CONSTANTS.h>
+#include <gmpxx.h>
+#include <array>
 
 
 class SHA256
@@ -61,6 +63,6 @@ protected:
 
 std::string sha256String(std::string input);
 mpz_class sha256Mpz(std::string input);
-
+std::array<char, HASH_ARRAY_SIZE> sha256Array(std::string input);
 
 #endif //PSYCHIC_GARBANZO_SHA256_H

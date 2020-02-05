@@ -7,6 +7,13 @@
 
 #include "include/includes.h"
 
+
+/*
+ * How to Use:
+ *  - Create your merkle tree structure
+ *  - add the wanted transaction hashes using the add
+ */
+
 class MerkleTree {
 private:
     std::vector<std::string > txs_hash;
@@ -15,12 +22,16 @@ private:
 
 public:
     MerkleTree();
-    void addElement(const std::string& tx_hash);
-    std::string calculateRoot();
+    void addTx(const std::string& tx_hash);
+    void addTx(const std::array<char, HASH_ARRAY_SIZE> tx_hash);
+
+    void calculateRoot();
 
     const std::vector<std::string> &getTxsHash() const;
 
-    const std::string &getRoot() const;
+    const std::string &getRoot() const ;
+    const char* getRootChar() const;
+    const std::array<char, HASH_ARRAY_SIZE> getRootArray() const;
 
     int getSize() const;
 

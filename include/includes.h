@@ -5,6 +5,10 @@
 #ifndef PSYCHIC_GARBANZO_INCLUDES_H
 #define PSYCHIC_GARBANZO_INCLUDES_H
 
+// System libraries
+#include <cstdint>
+
+
 // Catch2 includes
 #include "libs/catch2/catch.hpp"
 
@@ -20,5 +24,8 @@
 #include "src/merkleTree/MerkleTree.h"
 #include "src/block/BlockHeader.h"
 #include "src/transaction/Transaction.h"
+
+// Constants definitions
+#include "include/CONSTANTS.h"
 
 #endif //PSYCHIC_GARBANZO_INCLUDES_H

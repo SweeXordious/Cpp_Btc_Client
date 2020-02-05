@@ -10,13 +10,12 @@ addons:
       - gcc-5
       - g++-5
       - libgmp3-dev
-      - cmake
       - python3-pip
       - lcov
 
 before_install:
   - sudo pip3 install codecov
-
+  
 script:
   - sudo ln -s /usr/bin/gcc-5 /usr/local/bin/gcc
   - sudo ln -s /usr/bin/g++-5 /usr/local/bin/g++

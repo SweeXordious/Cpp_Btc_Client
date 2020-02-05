@@ -1,0 +1,10 @@
+//
+// Created by chizisch on 2/5/20.
+//
+
+#ifndef PSYCHIC_GARBANZO_CONSTANTS_H
+#define PSYCHIC_GARBANZO_CONSTANTS_H
+
+
+const int HASH_ARRAY_SIZE = 32 * 2;
+#endif //PSYCHIC_GARBANZO_CONSTANTS_H

@@ -1,6 +1,7 @@
 //
 // Created by chizisch on 1/30/20.
 //
+#include <cstddef>
 #include <iostream>
 #include <cstring>
 #include <fstream>
@@ -145,4 +146,10 @@ mpz_class sha256Mpz(std::string input){
         throw "Sha256 hash to Mpz conversion failed!";
     }
     return mpz_hash;
+}
+
+std::array<char, HASH_ARRAY_SIZE> sha256Array(std::string input) {
+    std::string hash = sha256String(input);
+    std::array<char, HASH_ARRAY_SIZE> buf = stringToArray(hash);
+    return buf;
 }
