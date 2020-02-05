@@ -42,7 +42,7 @@ Components:
     - discovery
 - Blocks
     - Definition
-        - Header
+        - Header: Done
     - validation
     - broadcast
 - Transaction definition
