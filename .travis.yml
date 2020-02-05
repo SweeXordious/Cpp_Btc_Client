@@ -10,12 +10,15 @@ addons:
       - gcc-5
       - g++-5
       - libgmp3-dev
-      - cmake
       - python3-pip
       - lcov
 
 before_install:
   - sudo pip3 install codecov
+  - CMAKE_VERSION=3.13..4
+  - | CMAKE_URL="https://cmake.org/files/v${CMAKE_VERSION%.[0-9]}/cmake-${CMAKE_VERSION}-Linux-x86_64.tar.gz"
+      mkdir cmake && travis_retry wget --no-check-certificate -O - ${CMAKE_URL} | tar --strip-components=1 -xz -C cmake
+      export PATH=${DEPS_DIR}/cmake/bin:${PATH}
 
 script:
   - sudo ln -s /usr/bin/gcc-5 /usr/local/bin/gcc
@@ -26,7 +29,7 @@ script:
   - cd ${TRAVIS_BUILD_DIR}
   - mkdir build
   - cd build
-  - cmake -DCMAKE_BUILD_TYPE=Coverage -DBUILD_TESTS=ON ..
+  - ../cmake/bin/cmake -DCMAKE_BUILD_TYPE=Coverage -DBUILD_TESTS=ON ..
   - make
   - make psychic-garbanzo_coverage
   - ctest
