@@ -45,7 +45,10 @@ void MerkleTree::calculateRoot() {
         temp = target;
     } while(target.size() > 1);
 
-    root = target[0];
+    if (target.size() > 0)
+        root = target[0];
+    else
+        throw "Error: Calculating the root of an empty Merkle Tree!";
 }
 
 

@@ -22,38 +22,58 @@ public:
     BlockHeader(int32_t version, array<char, HASH_ARRAY_SIZE> prevBlockHeader, array<char, HASH_ARRAY_SIZE> merkleRoot, uint32_t time, uint32_t nBits,
                 uint32_t nonce);
 
-
-    int32_t getVersion() const;
-
-    void setVersion(int32_t version);
-
-    array<char, HASH_ARRAY_SIZE> getPrevBlockHeader() const;
-
-    array<char, HASH_ARRAY_SIZE> getMerkleRoot() const;
-
-    uint32_t getTime() const;
-
-    void setTime(uint32_t time);
-
-    uint32_t getNBits() const;
-
-    void setNBits(uint32_t nBits);
-
-    uint32_t getNonce() const;
-
-    void setNonce(uint32_t nonce);
-
-    void setPrev_block_header(array<char, HASH_ARRAY_SIZE> pvh) {
-        prev_block_header = pvh;
-    }
-
-    void setMerkle_root(array<char, HASH_ARRAY_SIZE> mr){
-        merkle_root = mr;
-    }
-
     bool operator==(const BlockHeader &rhs) const;
 
     bool operator!=(const BlockHeader &rhs) const;
+
+    int32_t getVersion() const {
+        return version;
+    }
+
+    void setVersion(int32_t version) {
+        BlockHeader::version = version;
+    }
+
+    const array<char, HASH_ARRAY_SIZE>& getPrevBlockHeader() const {
+        return prev_block_header;
+    }
+
+    void setPrevBlockHeader(const array<char, HASH_ARRAY_SIZE> &prevBlockHeader) {
+        prev_block_header = prevBlockHeader;
+    }
+
+    const array<char, HASH_ARRAY_SIZE>& getMerkleRoot() const {
+        return merkle_root;
+    }
+
+    void setMerkleRoot(const array<char, HASH_ARRAY_SIZE> &merkleRoot) {
+        merkle_root = merkleRoot;
+    }
+
+    uint32_t getTime() const {
+        return time;
+    }
+
+    void setTime(uint32_t time) {
+        BlockHeader::time = time;
+    }
+
+    uint32_t getNBits() const {
+        return nBits;
+    }
+
+    void setNBits(uint32_t nBits) {
+        BlockHeader::nBits = nBits;
+    }
+
+    uint32_t getNonce() const {
+        return nonce;
+    }
+
+    void setNonce(uint32_t nonce) {
+        BlockHeader::nonce = nonce;
+    }
+
 };
 
 
