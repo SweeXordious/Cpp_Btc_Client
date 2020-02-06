@@ -4,11 +4,15 @@
 
 #include "include/includes.h"
 
-TEST_CASE("Block Header test"){
+TEST_CASE("Block Header creation test"){
     std::array<char, HASH_ARRAY_SIZE> prevBlockHash = sha256Array("prevBlockHash");
     std::array<char, HASH_ARRAY_SIZE> merkleRoot = sha256Array("merkleRoot");
 
     BlockHeader bh = BlockHeader(1, prevBlockHash, merkleRoot, 101010101, 2, 10);
 
     CHECK(bh.getMerkleRoot() ==  sha256Array("merkleRoot"));
+
+    BlockHeader bhEmpty = BlockHeader();
+
+    CHECK(bh != bhEmpty);
 }

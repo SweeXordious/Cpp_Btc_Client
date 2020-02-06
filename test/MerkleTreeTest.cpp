@@ -89,3 +89,29 @@ TEST_CASE("MerkleTree test: Checking the root Char getter"){
     CHECK_NOTHROW(m.getRoot());
 }
 
+
+TEST_CASE("MerkleTree test: root getters exceptions"){
+
+    MerkleTree m = MerkleTree();
+
+    m.addTx(sha256String("tx1"));
+    m.addTx(sha256String("tx2"));
+    m.addTx(sha256String("tx3"));
+
+    CHECK_THROWS(m.getRoot());
+    CHECK_THROWS(m.getRootChar());
+
+}
+
+TEST_CASE("MerkleTree test: calculating the root of an empty merkle tree"){
+
+    MerkleTree m = MerkleTree();
+
+    CHECK_THROWS(m.calculateRoot());
+
+    CHECK_THROWS(m.getRootChar());
+
+}
+
+
+
