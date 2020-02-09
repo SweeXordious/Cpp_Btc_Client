@@ -40,11 +40,11 @@ Components:
     - rpc
     - p2p
     - discovery
+- Script: Now
 - Blocks
     - Definition
         - Header: Done
     - validation
-    - broadcast
 - Transaction definition
     - addresses
     - currency
