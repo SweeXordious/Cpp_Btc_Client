@@ -10,11 +10,11 @@
 
 class Script {
 private:
-    std::stack<std::string, std::deque<opcodetype>> stack;
+    std::vector<std::string> script;
 
 public:
     Script();
-    void fillP2pkh(std::string pubKeyHash);
+    void fillP2pkh(std::string pubKeyHash, std::string pubkey, std::string sig);
     bool execute();
 
 
