@@ -23,3 +23,19 @@ TEST_CASE("String to array test"){
 
     CHECK(expected_output == actual_output);
 }
+
+TEST_CASE("OP_TYPE to string tests"){
+    CHECK(optypeToString(OP_DUP) == "OP_DUP");
+    CHECK(optypeToString(OP_CHECKSIG) == "OP_CHECKSIG");
+    CHECK(optypeToString(OP_EQUALVERIFY) == "OP_EQUALVERIFY");
+    CHECK(optypeToString(OP_HASH160) == "OP_HASH160");
+    CHECK(optypeToString(OP_UNKNOWN) == "Unknown OP_CODE");
+}
+
+TEST_CASE("String to OP_TYPE tests"){
+    CHECK(stringToOpCode("OP_DUP") == OP_DUP);
+    CHECK(stringToOpCode("OP_CHECKSIG") == OP_CHECKSIG);
+    CHECK(stringToOpCode("OP_EQUALVERIFY") == OP_EQUALVERIFY);
+    CHECK(stringToOpCode("OP_HASH160") == OP_HASH160);
+    CHECK(stringToOpCode("Unknown OP_CODE") == OP_UNKNOWN);
+}

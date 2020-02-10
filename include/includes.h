@@ -19,7 +19,7 @@
 #include "libs/sha256/SHA256.h"
 
 // personal headers includes
-#include "src/functions.h"
+#include "src/HelperFunctions.h"
 #include "src/playground/playground.h"
 #include "src/merkleTree/MerkleTree.h"
 #include "src/block/BlockHeader.h"
@@ -27,5 +27,6 @@
 
 // Constants definitions
 #include "include/CONSTANTS.h"
+#include "typedefs.h"
 
 #endif //PSYCHIC_GARBANZO_INCLUDES_H
