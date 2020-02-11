@@ -10,7 +10,7 @@ Script::Script() {
 
 bool Script::execute() {
 
-    if(stack.size() == 0) throw "Error: The stack containing the script is empty!";
+    if(script.size() == 0) throw "Error: The stack containing the script is empty!";
 
     std::stack<std::string, std::deque<std::string>> execStack;
 

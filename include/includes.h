@@ -18,6 +18,9 @@
 // SHA256 includes
 #include "libs/sha256/SHA256.h"
 
+// RIPEMD160 includes
+#include "libs/ripemd160/Ripemd160.h"
+
 // personal headers includes
 #include "src/HelperFunctions.h"
 #include "src/playground/playground.h"

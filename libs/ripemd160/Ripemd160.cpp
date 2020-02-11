@@ -12,8 +12,13 @@
 
 #include <cassert>
 #include <cstring>
+#include <string>
+#include <ios>
+#include <sstream>
+#include <iostream>
 #include "Ripemd160.h"
 #include "Utils.h"
+
 
 using std::uint8_t;
 using std::uint32_t;
@@ -139,3 +144,57 @@ const unsigned char Ripemd160::SR[NUM_ROUNDS] = {
         9,  7, 15, 11,  8,  6,  6, 14, 12, 13,  5, 14, 13, 13,  7,  5,
         15,  5,  8, 11, 14, 14,  6, 14,  6,  9, 12,  9, 12,  5, 15,  8,
         8,  5, 12,  9, 12,  5, 14,  6,  8, 13,  6,  5, 15, 13, 11, 11};
+
+
+
+unsigned char *bin_to_strhex(const unsigned char *bin, unsigned int binsz,
+                                  unsigned char **result)
+{
+    unsigned char hex_str[]= "0123456789abcdef";
+    unsigned int i;
+
+    if (!(*result = (unsigned char *)malloc(binsz * 2 + 1)))
+        return (NULL);
+
+    (*result)[binsz * 2] = 0;
+
+    if (!binsz)
+        return (NULL);
+
+    for (i = 0; i < binsz; i++)
+    {
+        (*result)[i * 2 + 0] = hex_str[(bin[i] >> 4) & 0x0F];
+        (*result)[i * 2 + 1] = hex_str[(bin[i]     ) & 0x0F];
+    }
+    return (*result);
+}
+
+std::string asciiToHex(const std::string& ascii)
+{
+    std::string hex;
+    const std::size_t length = ascii.length();
+    const char* cStr = ascii.c_str();
+    hex.resize(2 * length);
+
+    for (std::size_t i = 0; i < length; i++)
+    {
+        hex[2 * i] = (48 + cStr[i] / 16);
+        hex[2 * i + 1] = (48 + cStr[i] % 16);
+    }
+
+    return hex;
+}
+
+std::string ripemd160String(std::string input){
+    Bytes message = hexBytes(asciiToHex(input).c_str());
+
+    std::uint8_t actualHash[Ripemd160::HASH_LEN];
+    Ripemd160::getHash(message.data(), message.size(), actualHash);
+
+    unsigned char* o;
+
+    bin_to_strhex(actualHash, Ripemd160::HASH_LEN, &o);
+
+    return std::string(reinterpret_cast<const char *>(o));
+
+}

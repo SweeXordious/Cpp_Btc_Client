@@ -56,4 +56,6 @@ private: static const unsigned char SR[NUM_ROUNDS];  // Left-rotation for right 
 
 };
 
+std::string ripemd160String(std::string input);
+
 #endif //PSYCHIC_GARBANZO_RIPEMD160_H
