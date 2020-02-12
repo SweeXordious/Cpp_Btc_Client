@@ -11,4 +11,5 @@ cd secp256k1
 ./configure
 make
 sudo make install
-
+cd ..
+rm -rf secp256k1

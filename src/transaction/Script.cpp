@@ -61,37 +61,8 @@ bool Script::execute() {
 
             std::cout << msg32 << endl;
 
-/** Verify an ECDSA signature.
- *
- *  Returns: 1: correct signature
- *           0: incorrect or unparseable signature
- *  Args:    ctx:       a secp256k1 context object, initialized for verification.
- *  In:      sig:       the signature being verified (cannot be NULL)
- *           msg32:     the 32-byte message hash being verified (cannot be NULL)
- *           pubkey:    pointer to an initialized public key to verify with (cannot be NULL)
- *
- * To avoid accepting malleable signatures, only ECDSA signatures in lower-S
- * form are accepted.
- *
- * If you need to accept ECDSA signatures from sources that do not obey this
- * rule, apply secp256k1_ecdsa_signature_normalize to the signature prior to
- * validation, but be aware that doing so results in malleable signatures.
- *
- * For details, see the comments for that function.
-
-            SECP256K1_API SECP256K1_WARN_UNUSED_RESULT int secp256k1_ecdsa_verify(
-                    const secp256k1_context* ctx,
-                    const secp256k1_ecdsa_signature *sig,
-                    const unsigned char *msg32,
-                    const secp256k1_pubkey *pubkey
-            ) SECP256K1_ARG_NONNULL(1) SECP256K1_ARG_NONNULL(2) SECP256K1_ARG_NONNULL(3) SECP256K1_ARG_NONNULL(4);
-*/
-
-
             if (secp256k1_ecdsa_verify(verifyContext, &signature, msg32, &pubkey) == 1) execStack.push("true");
             else execStack.push("false");
-            // dont forget to free the stuff
-
         }
         else if (op == optypeToString(OP_DUP)) execStack.push(execStack.top());
         else if(op == optypeToString(OP_EQUALVERIFY)) {
@@ -99,7 +70,7 @@ bool Script::execute() {
             execStack.pop();
             std::string second = execStack.top();
             execStack.pop();
-            //if (first != second) return false;
+            if (first != second) return false;
         } else if (op == optypeToString(OP_HASH160)) {
             std::string currentOp = execStack.top();
             std::cout << "Before: " << currentOp << std::endl;
@@ -109,8 +80,6 @@ bool Script::execute() {
             std::cout << doubleHash << std::endl;
         }
         else execStack.push(op);
-
-
     }
 
     return execStack.top() == "true";
