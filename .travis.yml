@@ -23,6 +23,7 @@ script:
   - export CC=/usr/bin/gcc-5
   - export CXX=/usr/bin/g++-5
   - cd ${TRAVIS_BUILD_DIR}
+  - sudo bash reqs.sh
   - mkdir build
   - cd build
   - cmake -DCMAKE_BUILD_TYPE=Coverage -DBUILD_TESTS=ON ..
