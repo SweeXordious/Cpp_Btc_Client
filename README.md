@@ -2,12 +2,13 @@
 [![Build Status](https://travis-ci.com/SweeXordious/psychic-garbanzo.svg?token=z2HQYuqNJFYxRTjxCmyT&branch=master)](https://travis-ci.com/SweeXordious/psychic-garbanzo) [![codecov](https://codecov.io/gh/SweeXordious/psychic-garbanzo/branch/master/graph/badge.svg?token=9ydUg96zDn)](https://codecov.io/gh/SweeXordious/psychic-garbanzo)
 
 
-# Commands
-
-`sudo apt-get install libgmp3-dev`
 
 ### Build 
 `git clone https://github.com/SweeXordious/psychic-garbanzo`
+
+`cd psychic-garbanzo`
+
+`sudo bash reqs.sh`
 
 `mkdir build`
 
