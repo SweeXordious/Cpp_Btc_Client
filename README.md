@@ -36,6 +36,9 @@
 
 Components:
 - Hash function: sha256 => done
+- Scripting language: 
+    - still requires tests
+    - still the formats of pubkeys and hashes need to be dealt with
 - Underlying network
     - rpc
     - p2p
@@ -48,6 +51,7 @@ Components:
 - Transaction definition
     - addresses
     - currency
+    - format: json
 - Merkle tree: Done
 - Proof of work
 - Storage
@@ -56,3 +60,6 @@ Components:
 - ui ?
 - different bases
 
+Problems:
+- When passing public keys or idk to sha256 or ripemd160, it gives wrong results from time to time. That is due to the 
+fact that data is passed as ascii, hex, binary or whatever and that causes confusion.. 

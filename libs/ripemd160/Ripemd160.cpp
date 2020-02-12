@@ -198,3 +198,17 @@ std::string ripemd160String(std::string input){
     return std::string(reinterpret_cast<const char *>(o));
 
 }
+
+std::string ripemd160StringHex(std::string input){
+    Bytes message = hexBytes(input.c_str());
+
+    std::uint8_t actualHash[Ripemd160::HASH_LEN];
+    Ripemd160::getHash(message.data(), message.size(), actualHash);
+
+    unsigned char* o;
+
+    bin_to_strhex(actualHash, Ripemd160::HASH_LEN, &o);
+
+    return std::string(reinterpret_cast<const char *>(o));
+
+}

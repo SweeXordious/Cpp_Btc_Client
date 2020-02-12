@@ -21,12 +21,17 @@
 // RIPEMD160 includes
 #include "libs/ripemd160/Ripemd160.h"
 
+// SECP256K1 includes
+#include <secp256k1.h>
+
 // personal headers includes
 #include "src/HelperFunctions.h"
 #include "src/playground/playground.h"
 #include "src/merkleTree/MerkleTree.h"
 #include "src/block/BlockHeader.h"
 #include "src/transaction/Transaction.h"
+#include <src/transaction/Script.h>
+
 
 // Constants definitions
 #include "include/CONSTANTS.h"

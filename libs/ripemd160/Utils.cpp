@@ -51,11 +51,6 @@ const char *Utils::HEX_DIGITS = "0123456789abcdef";
 
 
 
-Bytes asciiBytes(const char *str) {
-    return Bytes(str, str + std::strlen(str));
-}
-
-
 Bytes hexBytes(const char *str) {
     Bytes result;
     size_t length = std::strlen(str);

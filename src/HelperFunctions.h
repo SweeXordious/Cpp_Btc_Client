@@ -12,5 +12,5 @@ int dummydum (std::string str);
 std::array<char, HASH_ARRAY_SIZE> stringToArray(std::string input);
 std::string optypeToString(opcodetype op);
 opcodetype stringToOpCode(std::string op);
-
+std::string sign(std::string input);
 #endif //FIRST_FUNCTIONS_H

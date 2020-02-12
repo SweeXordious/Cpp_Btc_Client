@@ -53,7 +53,6 @@ public: static void storeBigUint32(std::uint32_t x, std::uint8_t arr[4]);
     Utils() = delete;  // Not instantiable
 
 };
-Bytes asciiBytes(const char *str);
 
 
 Bytes hexBytes(const char *str);
