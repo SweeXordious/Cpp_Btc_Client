@@ -50,7 +50,6 @@ Components:
     - broadcast
 - Transaction definition
     - addresses
-    - currency
     - format: json
 - Merkle tree: Done
 - Proof of work
