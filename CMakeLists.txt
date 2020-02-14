@@ -5,18 +5,21 @@ set(CMAKE_CXX_STANDARD 14)
 
 include_directories(.)
 
+# Search for gmp
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/libs/gmp")
 find_package(GMP REQUIRED)
 
 
+
 add_executable(psychic-garbanzo src/main.cpp
-        src/functions.cpp
-        src/functions.h include/includes.h include/typedefs.h
+        src/HelperFunctions.cpp
+        src/HelperFunctions.h include/includes.h include/typedefs.h
         src/playground/playground.h src/playground/playground.cpp
-        libs/sha256/SHA256.cpp libs/sha256/SHA256.h src/merkleTree/MerkleTree.cpp src/merkleTree/MerkleTree.h src/block/BlockHeader.cpp src/block/BlockHeader.h src/transaction/Transaction.cpp src/transaction/Transaction.h src/block/BlockHeaderBuilder.h include/CONSTANTS.h)
+        libs/sha256/SHA256.cpp libs/sha256/SHA256.h src/merkleTree/MerkleTree.cpp src/merkleTree/MerkleTree.h src/block/BlockHeader.cpp src/block/BlockHeader.h src/transaction/Transaction.cpp src/transaction/Transaction.h src/block/BlockHeaderBuilder.h include/CONSTANTS.h src/transaction/TransactionInput.cpp src/transaction/TransactionInput.h src/transaction/Script.cpp src/transaction/Script.h libs/ripemd160/Ripemd160.cpp libs/ripemd160/Ripemd160.h libs/ripemd160/Utils.cpp libs/ripemd160/Utils.h)
 
 target_link_libraries(psychic-garbanzo gmp gmpxx)
-
+# link with secp256k1
+target_link_libraries(psychic-garbanzo ${CMAKE_SOURCE_DIR}/libs/secp256k1/libsecp256k1.a)
 
 
 ################################
@@ -29,14 +32,15 @@ option(BUILD_TESTS "Build all tests." OFF) # Makes boolean 'test' available.
 if (BUILD_TESTS)
         enable_testing()
         add_executable(psychic-test test/functionsTest.cpp test/Sha256Test.cpp
-                src/functions.cpp
-                src/functions.h include/includes.h include/typedefs.h
+                src/HelperFunctions.cpp
+                src/HelperFunctions.h include/includes.h include/typedefs.h
                 src/playground/playground.h src/playground/playground.cpp
                 libs/sha256/SHA256.cpp libs/sha256/SHA256.h
                 src/merkleTree/MerkleTree.cpp src/merkleTree/MerkleTree.h
                 src/block/BlockHeader.cpp src/block/BlockHeader.h
-                src/transaction/Transaction.cpp src/transaction/Transaction.h test/MerkleTreeTest.cpp src/block/BlockHeaderBuilder.h test/BlockHeaderTest.cpp include/CONSTANTS.h test/BlockHeaderBuilderTest.cpp)
+                src/transaction/Transaction.cpp src/transaction/Transaction.h test/MerkleTreeTest.cpp src/block/BlockHeaderBuilder.h test/BlockHeaderTest.cpp include/CONSTANTS.h test/BlockHeaderBuilderTest.cpp src/transaction/TransactionInput.cpp src/transaction/TransactionInput.h src/transaction/Script.cpp src/transaction/Script.h libs/ripemd160/Ripemd160.cpp libs/ripemd160/Ripemd160.h libs/ripemd160/Utils.cpp libs/ripemd160/Utils.h test/Ripemd160Test.cpp test/ScriptTest.cpp)
         target_link_libraries(psychic-test gmp gmpxx)
+        target_link_libraries(psychic-test ${CMAKE_SOURCE_DIR}/libs/secp256k1/libsecp256k1.a)
         if (CMAKE_BUILD_TYPE STREQUAL "Coverage")
                 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/libs/codeCoverage")
                 include(CodeCoverage)
