@@ -55,7 +55,6 @@ TEST_CASE("Testing p2pkh with a script: correct pkey and wrong signature") {
     s.fillP2pkh(ripemd160String(sha256String(std::string(reinterpret_cast<const char *>(output)))),
                 std::string(reinterpret_cast<const char *>(output)),
                 "wrong_sig");
-    /*
+
     CHECK(s.execute() == false);
-*/
 }
