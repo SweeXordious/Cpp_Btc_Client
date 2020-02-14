@@ -26,7 +26,7 @@ TEST_CASE("Testing p2pkh with a script: wrong pubkey format") {
 }
 
 TEST_CASE("Testing p2pkh with a script: correct pkey and wrong signature") {
-/*
+
     // Creating a 32-bytes private key
     std::string privateKey = "7e6d4ec4f0ed1c8cff56356fafb394970fa0c8aa83a1e351f9f4b9fbf327250c";
     char cPrivateKey[32];
@@ -41,7 +41,7 @@ TEST_CASE("Testing p2pkh with a script: correct pkey and wrong signature") {
 
     // Checking the creation of the public key
     if (secp256k1_ec_pubkey_create(signingContext, &pkey, reinterpret_cast<const unsigned char *>(&seckey)) == 0) throw "Error: Public key creation failed!";
-
+/*
 
     // Serializing the public key
     secp256k1_context *noneContext = secp256k1_context_create(SECP256K1_CONTEXT_NONE);
