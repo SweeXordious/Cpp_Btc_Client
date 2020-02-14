@@ -49,7 +49,7 @@ bool Script::execute() {
             if(secp256k1_ec_pubkey_parse(noneContext, &pubkey, ucPkey, pkey.size()) == 0) throw "Error: Public key parsing failed!";
 
             secp256k1_ecdsa_signature signature;
-            if(secp256k1_ecdsa_signature_parse_der(noneContext, &signature, ucSig, sig.size()) == 0 && sig != "wrong_sig") throw "Error: Signature parsing failed";
+            if(sig != "wrong_sig" && secp256k1_ecdsa_signature_parse_der(noneContext, &signature, ucSig, sig.size()) == 0 ) throw "Error: Signature parsing failed";
 
             // Creating C-type strings for the transaction hash
             std:: string hashed_tx = sha256String(tx);
