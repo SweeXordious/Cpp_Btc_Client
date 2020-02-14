@@ -49,12 +49,13 @@ TEST_CASE("Testing p2pkh with a script: correct pkey and wrong signature") {
     std::size_t outputLen = 65;
     secp256k1_ec_pubkey_serialize(noneContext, reinterpret_cast<unsigned char *>(&output), &outputLen, &pkey, SECP256K1_EC_UNCOMPRESSED);
 
-/*
+
     // Creating a script with corresponding pkey and pkhash
     Script s = Script("A script should be here");
     s.fillP2pkh(ripemd160String(sha256String(std::string(reinterpret_cast<const char *>(output)))),
                 std::string(reinterpret_cast<const char *>(output)),
                 "wrong_sig");
+    /*
     CHECK(s.execute() == false);
 */
 }
