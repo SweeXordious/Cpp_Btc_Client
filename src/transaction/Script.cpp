@@ -30,7 +30,7 @@ bool Script::execute() {
             // because we are dealing with uncompressed serialized public keys
             if(pkey.size() != 65) throw "Error: Public key size is incorrect";
 
-
+/*
             // Creating C-type strings for the signature
             unsigned char ucSig[pkey.size()+1] = {0};
             const char* cSig = sig.c_str();
@@ -65,6 +65,7 @@ bool Script::execute() {
             // Cleaning out
             //secp256k1_context_destroy(verifyContext);
             //secp256k1_context_destroy(noneContext);
+            */
         }
         else if (op == optypeToString(OP_DUP)) execStack.push(execStack.top());
         else if(op == optypeToString(OP_EQUALVERIFY)) {

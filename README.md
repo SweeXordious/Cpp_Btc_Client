@@ -39,7 +39,7 @@ Components:
 - Hash function: sha256 => done
 - Scripting language: Done 
     - still requires testing with correct signatures
-    - memory leaks in the execution method
+    - memory leaks in the execution method that make the coverage fail
 - Underlying network
     - rpc
     - p2p
