@@ -41,7 +41,7 @@ TEST_CASE("Testing p2pkh with a script: correct pkey and wrong signature") {
 
     // Checking the creation of the public key
     if (secp256k1_ec_pubkey_create(signingContext, &pkey, reinterpret_cast<const unsigned char *>(&seckey)) == 0) throw "Error: Public key creation failed!";
-/*
+
 
     // Serializing the public key
     secp256k1_context *noneContext = secp256k1_context_create(SECP256K1_CONTEXT_NONE);
@@ -49,7 +49,7 @@ TEST_CASE("Testing p2pkh with a script: correct pkey and wrong signature") {
     std::size_t outputLen = 65;
     secp256k1_ec_pubkey_serialize(noneContext, reinterpret_cast<unsigned char *>(&output), &outputLen, &pkey, SECP256K1_EC_UNCOMPRESSED);
 
-
+/*
     // Creating a script with corresponding pkey and pkhash
     Script s = Script("A script should be here");
     s.fillP2pkh(ripemd160String(sha256String(std::string(reinterpret_cast<const char *>(output)))),
