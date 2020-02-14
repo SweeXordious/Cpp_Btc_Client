@@ -63,8 +63,8 @@ bool Script::execute() {
             else execStack.push("false");
 
             // Cleaning out
-            secp256k1_context_destroy(verifyContext);
-            secp256k1_context_destroy(noneContext);
+            //secp256k1_context_destroy(verifyContext);
+            //secp256k1_context_destroy(noneContext);
         }
         else if (op == optypeToString(OP_DUP)) execStack.push(execStack.top());
         else if(op == optypeToString(OP_EQUALVERIFY)) {
