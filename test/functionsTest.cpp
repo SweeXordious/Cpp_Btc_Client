@@ -39,3 +39,18 @@ TEST_CASE("String to OP_TYPE tests"){
     CHECK(stringToOpCode("OP_HASH160") == OP_HASH160);
     CHECK(stringToOpCode("Unknown OP_CODE") == OP_UNKNOWN);
 }
+
+TEST_CASE("Hex to Bytes array Tests with even hex strings") {
+    std::string input = "123456789abcde";
+    char bytesInput[input.length()/2];
+
+    hexToBytes(input, bytesInput, input.length());
+
+    unsigned char bytesOutput[input.length()/2];
+    memcpy(bytesOutput, bytesInput,input.length());
+
+
+    std::string hexInput = bytesToHexString(bytesOutput, sizeof(bytesOutput) / sizeof(char));
+
+    CHECK(hexInput == input);
+}

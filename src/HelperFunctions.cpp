@@ -5,6 +5,8 @@
 #include <string>
 #include <cstring>
 #include <include/includes.h>
+#include <iostream>
+#include <iomanip>
 #include "HelperFunctions.h"
 
 
@@ -50,6 +52,57 @@ std::array<char, HASH_ARRAY_SIZE> stringToArray(std::string input) {
 
     return buf;
 }
+
+/*
+ * This function only deals with even length hex strings
+ * In case you wanna make it odds compatible, add a trailing "0" to the hex string
+ */
+
+void hexToBytes(const std::string& _hex, char* _bytes, int len) {
+
+    std::string hex = std::string(_hex);
+
+    char bytes [len/2];
+    int j=0;
+    for (unsigned int i = 0; i < len; i += 2) {
+        std::string byteString = hex.substr(i, 2);
+        char byte = (char) strtol(byteString.c_str(), NULL, 16);
+        bytes[j] = byte;
+        j++;
+    }
+
+    memcpy(_bytes, bytes,len/2);
+}
+
+std::string bytesToHexString(unsigned char* input, int len){
+    std::stringstream ss;
+    for (int i = 0; i < len; ++i)
+    {
+        ss <<  std::setfill('0') << std::setw(2) << std::hex << (0xff & (unsigned int)input[i]);
+    }
+
+    std::string s = ss.str().substr(0, len*2);
+
+    return s;
+}
+
+
+
+/*
+
+std::string garbageToHex(char* digest){
+    std::cout << "In garbage" << std::endl;
+    char buf[65];
+    buf[64] = 0;
+    for (int i = 0; i < 64; i++){
+        std::cout<< "Killing: " << i << " " << buf+i*2 << "=" << digest[i]  << endl;
+        sprintf(buf+i*2, "%02x", digest[i]);}
+    std::cout<< "After "<< endl;
+    std::cout << std::string(buf) << endl;
+    return std::string(buf);
+}
+*/
+
 /*
 std::string sign(std::string input){
 

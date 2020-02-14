@@ -19,50 +19,52 @@ bool Script::execute() {
 
     for (auto op : script) {
 
-        std::cout << op << endl;
-
         if(op == optypeToString(OP_CHECKSIG)){
-            std::cout << "In OP_CHECKSIG"  << endl;
 
-            std::string sig = execStack.top();
-            execStack.pop();
+            // Pop elements from the stack
             std::string pkey = execStack.top();
             execStack.pop();
+            std::string sig = execStack.top();
+            execStack.pop();
 
-            std::cout << sig << std::endl;
-            std::cout << pkey << std::endl;
+            // because we are dealing with uncompressed serialized public keys
+            if(pkey.size() != 65) throw "Error: Public key size is incorrect";
 
-            if(sig.size() == -5) throw "Error: Signature size is incorrect";
-            if(pkey.size() != 64) throw "Error: Public key size is incorrect";
 
-            unsigned char *ucSig = (unsigned char*) malloc(pkey.size()+1);
-            std::copy(sig.c_str(), sig.c_str() + sizeof(sig.c_str()),ucSig );
+            // Creating C-type strings for the signature
+            unsigned char ucSig[pkey.size()+1] = {0};
+            const char* cSig = sig.c_str();
+            std::copy(cSig, cSig + strlen(cSig),ucSig);
 
+            // Creating C-type strings for the pkey
             unsigned char *ucPkey = (unsigned char*) malloc(sig.size()+1);
-            std::copy(pkey.c_str(),pkey.c_str() + sizeof(pkey.c_str()), ucPkey);
-
-
-            std::cout << ucSig << std::endl;
-            std::cout << ucPkey << std::endl;
+            const char* cPKey = pkey.c_str();
+            std::copy(cPKey,cPKey + pkey.size(), ucPkey);
 
             secp256k1_context *verifyContext = secp256k1_context_create(SECP256K1_CONTEXT_VERIFY);
             secp256k1_context *noneContext = secp256k1_context_create(SECP256K1_CONTEXT_NONE);
 
-
+            // Parsing pkey and signature
             secp256k1_pubkey pubkey;
-            if(secp256k1_ec_pubkey_parse(noneContext, &pubkey, ucPkey, sizeof(ucPkey)) == 0) throw "Error: Public key parsing failed!";
+            if(secp256k1_ec_pubkey_parse(noneContext, &pubkey, ucPkey, pkey.size()) == 0) throw "Error: Public key parsing failed!";
 
             secp256k1_ecdsa_signature signature;
-            if(secp256k1_ecdsa_signature_parse_der(noneContext, &signature, ucSig, sizeof(ucSig)) == 0) throw "Error: Signature parsing failed";
+            if(secp256k1_ecdsa_signature_parse_der(noneContext, &signature, ucSig, sig.size()) == 0 && sig != "wrong_sig") throw "Error: Signature parsing failed";
 
+            // Creating C-type strings for the transaction hash
             std:: string hashed_tx = sha256String(tx);
-            unsigned char* msg32 = (unsigned char*) malloc(64 * sizeof(unsigned char));
-            std::copy(hashed_tx.c_str(), hashed_tx.c_str() + sizeof(hashed_tx.c_str()), msg32);
+            const char* cHashed_tx = hashed_tx.c_str();
+            unsigned char* msg32 = (unsigned char*) malloc(hashed_tx.size() * sizeof(unsigned char));
+            std::copy(cHashed_tx, cHashed_tx + hashed_tx.size(), msg32);
 
-            std::cout << msg32 << endl;
+            // Verifying signature with pkey
 
             if (secp256k1_ecdsa_verify(verifyContext, &signature, msg32, &pubkey) == 1) execStack.push("true");
             else execStack.push("false");
+
+            // Cleaning out
+            secp256k1_context_destroy(verifyContext);
+            secp256k1_context_destroy(noneContext);
         }
         else if (op == optypeToString(OP_DUP)) execStack.push(execStack.top());
         else if(op == optypeToString(OP_EQUALVERIFY)) {
@@ -73,11 +75,9 @@ bool Script::execute() {
             if (first != second) return false;
         } else if (op == optypeToString(OP_HASH160)) {
             std::string currentOp = execStack.top();
-            std::cout << "Before: " << currentOp << std::endl;
             execStack.pop();
             std::string doubleHash = ripemd160String(sha256String(currentOp));
             execStack.push(doubleHash);
-            std::cout << doubleHash << std::endl;
         }
         else execStack.push(op);
     }

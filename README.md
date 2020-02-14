@@ -37,9 +37,9 @@
 
 Components:
 - Hash function: sha256 => done
-- Scripting language: 
-    - still requires tests
-    - still the formats of pubkeys and hashes need to be dealt with
+- Scripting language: Done 
+    - still requires testing with correct signatures
+    - memory leaks in the execution method
 - Underlying network
     - rpc
     - p2p
