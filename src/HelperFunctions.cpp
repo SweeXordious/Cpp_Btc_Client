@@ -8,7 +8,7 @@
 #include <iostream>
 #include <iomanip>
 #include "HelperFunctions.h"
-
+#include <sstream>
 
 int dummydum (std::string str) {
     if (str == "rachid")
