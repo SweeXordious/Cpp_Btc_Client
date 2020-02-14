@@ -57,4 +57,5 @@ TEST_CASE("Testing p2pkh with a script: correct pkey and wrong signature") {
                 "wrong_sig");
 
     CHECK(s.execute() == false);
+
 }

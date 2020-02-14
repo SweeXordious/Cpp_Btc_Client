@@ -30,6 +30,8 @@ bool Script::execute() {
             // because we are dealing with uncompressed serialized public keys
             if(pkey.size() != 65) throw "Error: Public key size is incorrect";
 
+            execStack.push("false");
+
 /*
             // Creating C-type strings for the signature
             unsigned char ucSig[pkey.size()+1] = {0};
