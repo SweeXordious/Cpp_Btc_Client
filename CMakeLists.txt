@@ -15,7 +15,7 @@ add_executable(psychic-garbanzo src/main.cpp
         src/HelperFunctions.cpp
         src/HelperFunctions.h include/includes.h include/typedefs.h
         src/playground/playground.h src/playground/playground.cpp
-        libs/sha256/SHA256.cpp libs/sha256/SHA256.h src/merkleTree/MerkleTree.cpp src/merkleTree/MerkleTree.h src/block/BlockHeader.cpp src/block/BlockHeader.h src/transaction/Transaction.cpp src/transaction/Transaction.h src/block/BlockHeaderBuilder.h include/CONSTANTS.h src/transaction/TransactionInput.cpp src/transaction/TransactionInput.h src/transaction/Script.cpp src/transaction/Script.h libs/ripemd160/Ripemd160.cpp libs/ripemd160/Ripemd160.h libs/ripemd160/Utils.cpp libs/ripemd160/Utils.h)
+        libs/sha256/SHA256.cpp libs/sha256/SHA256.h src/merkleTree/MerkleTree.cpp src/merkleTree/MerkleTree.h src/block/BlockHeader.cpp src/block/BlockHeader.h src/transaction/Transaction.cpp src/transaction/Transaction.h src/block/BlockHeaderBuilder.h include/CONSTANTS.h src/transaction/txInput/TransactionInput.cpp src/transaction/txInput/TransactionInput.h src/transaction/Script.cpp src/transaction/Script.h libs/ripemd160/Ripemd160.cpp libs/ripemd160/Ripemd160.h libs/ripemd160/Utils.cpp libs/ripemd160/Utils.h src/transaction/txInput/TxInputBuilder.h)
 
 target_link_libraries(psychic-garbanzo gmp gmpxx)
 # link with secp256k1
@@ -38,7 +38,7 @@ if (BUILD_TESTS)
                 libs/sha256/SHA256.cpp libs/sha256/SHA256.h
                 src/merkleTree/MerkleTree.cpp src/merkleTree/MerkleTree.h
                 src/block/BlockHeader.cpp src/block/BlockHeader.h
-                src/transaction/Transaction.cpp src/transaction/Transaction.h test/MerkleTreeTest.cpp src/block/BlockHeaderBuilder.h test/BlockHeaderTest.cpp include/CONSTANTS.h test/BlockHeaderBuilderTest.cpp src/transaction/TransactionInput.cpp src/transaction/TransactionInput.h src/transaction/Script.cpp src/transaction/Script.h libs/ripemd160/Ripemd160.cpp libs/ripemd160/Ripemd160.h libs/ripemd160/Utils.cpp libs/ripemd160/Utils.h test/Ripemd160Test.cpp test/ScriptTest.cpp)
+                src/transaction/Transaction.cpp src/transaction/Transaction.h test/MerkleTreeTest.cpp src/block/BlockHeaderBuilder.h test/BlockHeaderTest.cpp include/CONSTANTS.h test/BlockHeaderBuilderTest.cpp src/transaction/txInput/TransactionInput.cpp src/transaction/txInput/TransactionInput.h src/transaction/Script.cpp src/transaction/Script.h libs/ripemd160/Ripemd160.cpp libs/ripemd160/Ripemd160.h libs/ripemd160/Utils.cpp libs/ripemd160/Utils.h test/Ripemd160Test.cpp test/ScriptTest.cpp src/transaction/txInput/TxInputBuilder.h test/TransactionInputTest.cpp test/TxInputBuilderTest.cpp)
         target_link_libraries(psychic-test gmp gmpxx)
         target_link_libraries(psychic-test ${CMAKE_SOURCE_DIR}/libs/secp256k1/libsecp256k1.a)
         if (CMAKE_BUILD_TYPE STREQUAL "Coverage")
