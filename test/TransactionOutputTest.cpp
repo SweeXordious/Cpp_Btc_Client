@@ -17,4 +17,8 @@ TEST_CASE("Transaction output tests"){
     TransactionOutput wrongCopy = TransactionOutput(100, "Wrong output");
 
     CHECK (tout != wrongCopy);
+
+    TransactionOutput empty = TransactionOutput();
+
+    CHECK (tout != empty);
 }
