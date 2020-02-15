@@ -12,4 +12,7 @@ TEST_CASE("Transaction Input Test"){
     TransactionInput txinCopy = TransactionInput("hashKey", 1, "script", "signature", 2);
     CHECK(txin == txinCopy);
 
+    TransactionInput txinFalseCopy = TransactionInput("FalsehashKey", 1, "script", "signature", 2);
+    CHECK(txin != txinFalseCopy);
+
 }
