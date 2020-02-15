@@ -4,6 +4,11 @@
 
 #ifndef PSYCHIC_GARBANZO_TRANSACTION_H
 #define PSYCHIC_GARBANZO_TRANSACTION_H
+
+#include <stdint-gcc.h>
+#include <src/transaction/txInput/TransactionInput.h>
+#include <src/transaction/txOutput/TransactionOutput.h>
+
 /*
  * Regular transactions structure:
  *  - Version
@@ -29,6 +34,80 @@
  */
 
 class Transaction {
+private:
+    int32_t version;
+    int txInCount;
+    TransactionInput inputs;
+    int txOutCount;
+    TransactionOutput outpus;
+    uint32_t locktime;
+
+public:
+    Transaction(){}
+
+    Transaction(int32_t version, int txInCount, const TransactionInput &inputs, int txOutCount,
+                const TransactionOutput &outpus, uint32_t locktime) : version(version), txInCount(txInCount),
+                                                                      inputs(inputs), txOutCount(txOutCount),
+                                                                      outpus(outpus), locktime(locktime) {}
+
+    void setVersion(int32_t version) {
+        Transaction::version = version;
+    }
+
+    int getTxInCount() const {
+        return txInCount;
+    }
+
+    void setTxInCount(int txInCount) {
+        Transaction::txInCount = txInCount;
+    }
+
+    const TransactionInput &getInputs() const {
+        return inputs;
+    }
+
+    void setInputs(const TransactionInput &inputs) {
+        Transaction::inputs = inputs;
+    }
+
+    int getTxOutCount() const {
+        return txOutCount;
+    }
+
+    void setTxOutCount(int txOutCount) {
+        Transaction::txOutCount = txOutCount;
+    }
+
+    const TransactionOutput &getOutpus() const {
+        return outpus;
+    }
+
+    void setOutpus(const TransactionOutput &outpus) {
+        Transaction::outpus = outpus;
+    }
+
+    uint32_t getLocktime() const {
+        return locktime;
+    }
+
+    void setLocktime(uint32_t locktime) {
+        Transaction::locktime = locktime;
+    }
+
+
+    bool operator==(const Transaction &rhs) const {
+        return version == rhs.version &&
+               txInCount == rhs.txInCount &&
+               inputs == rhs.inputs &&
+               txOutCount == rhs.txOutCount &&
+               outpus == rhs.outpus &&
+               locktime == rhs.locktime;
+    }
+
+    bool operator!=(const Transaction &rhs) const {
+        return !(rhs == *this);
+    }
+
 
 };
 
