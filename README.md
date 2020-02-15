@@ -47,6 +47,7 @@ Components:
 - Blocks
     - Definition
         - Header: Done
+            - refactor arrays to strings once and for all
     - validation
     - broadcast
 - Transaction definition

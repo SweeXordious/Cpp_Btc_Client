@@ -96,6 +96,5 @@ void Script::fillP2pkh(std::string pubKeyHash, std::string pubkey, std::string s
     script.push_back(pubKeyHash);
     script.push_back(optypeToString(OP_EQUALVERIFY));
     script.push_back(optypeToString(OP_CHECKSIG));
-
 }
 

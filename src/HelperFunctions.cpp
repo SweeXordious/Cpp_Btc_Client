@@ -62,6 +62,8 @@ void hexToBytes(const std::string& _hex, char* _bytes, int len) {
 
     std::string hex = std::string(_hex);
 
+    if (len % 2 == 1) throw "Hex string should be even length";
+
     char bytes [len/2];
     int j=0;
     for (unsigned int i = 0; i < len; i += 2) {

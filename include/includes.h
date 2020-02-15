@@ -30,7 +30,9 @@
 #include "src/merkleTree/MerkleTree.h"
 #include "src/block/BlockHeader.h"
 #include "src/transaction/Transaction.h"
-#include <src/transaction/Script.h>
+#include "src/transaction/Script.h"
+#include "src/transaction/txInput/TransactionInput.h"
+#include "src/transaction/txInput/TxInputBuilder.h"
 
 
 // Constants definitions
