@@ -56,8 +56,6 @@ Components:
 - Merkle tree: Done
 - Proof of work
 - Storage
-    - serialization
-    - think of a db ? or just files
 - ui ?
 - different bases
 
